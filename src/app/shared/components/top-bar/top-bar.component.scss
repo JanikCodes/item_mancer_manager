@@ -1,0 +1,9 @@
+.left {
+  @apply basis-1/2;
+  @apply flex flex-row items-center gap-4;
+}
+
+.right {
+  @apply basis-1/2;
+  @apply flex flex-row-reverse items-center;
+}

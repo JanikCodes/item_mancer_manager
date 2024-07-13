@@ -1,25 +1,4 @@
-<mat-toolbar>
-  <div class="left">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Item Mancer Manager</span>
-  </div>
-  <div class="right">
-    <button mat-icon-button [matMenuTriggerFor]="profile">
-      <mat-icon>person</mat-icon>
-    </button>
-
-    <mat-menu #profile="matMenu">
-      @if (user){
-        <button mat-menu-item [disabled]="true">{{ user.username }}</button>
-        <button mat-menu-item (click)="logout()">Logout</button>
-      } @else {
-        <button mat-menu-item (click)="openLoginModal()">Login</button>
-      }
-    </mat-menu>
-  </div>
-</mat-toolbar>
+<top-bar-component></top-bar-component>
 
 <mat-sidenav-container class="container-side">
   <mat-sidenav
