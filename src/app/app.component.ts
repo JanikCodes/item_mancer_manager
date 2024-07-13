@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MaterialModule } from './shared/module/material/material.module';
 import { AuthService } from './shared/services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,7 +18,10 @@ export class AppComponent implements OnInit {
 
   readonly loginModal = inject(MatDialog);
 
-  public constructor(private authService: AuthService) {}
+  public constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.authService.user.subscribe((user) => {
@@ -34,5 +37,6 @@ export class AppComponent implements OnInit {
 
   public logout(): void {
     this.authService.clearUser();
+    this.router.navigateByUrl('');
   }
 }

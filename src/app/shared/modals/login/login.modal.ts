@@ -15,6 +15,8 @@ import {
 import { HttpService } from '../../services/http/http.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { SnackBarService } from '../../services/snack-bar/snack-bar.service';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'login-modal',
@@ -36,7 +38,8 @@ export class LoginModal {
 
   public constructor(
     private httpService: HttpService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBarService: SnackBarService
   ) {}
 
   public changePasswordVisibility(event: MouseEvent) {
@@ -50,12 +53,24 @@ export class LoginModal {
       password: this.loginForm.value.password,
     };
 
-    this.httpService.post('login', loginObj).subscribe((result: any) => {
-      if (result) {
-        this.authService.setUser(result);
-      } else {
-        console.log('Invalid credentials');
+    this.httpService.post('login', loginObj).subscribe(
+      (result: any) => {
+        if (result.token) {
+          this.authService.setUser(result);
+          this.snackBarService.showSnackBar('Success!', '', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'right',
+          });
+        }
+      },
+      (error) => {
+        this.snackBarService.showSnackBar('Oops, incorrect credentials..', '', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+        });
       }
-    });
+    );
   }
 }

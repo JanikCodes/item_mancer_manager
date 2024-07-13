@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { SnackBarService } from '../snack-bar/snack-bar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,10 @@ import { environment } from '../../../../environments/environment';
 export class HttpService {
   private backendUrl = environment.backendUrl;
 
-  public constructor(private http: HttpClient) {}
+  public constructor(
+    private http: HttpClient,
+    private snackBarService: SnackBarService
+  ) {}
 
   public get<T>(
     url: string,
@@ -28,6 +32,7 @@ export class HttpService {
 
   public post(url: string, body: any | null): Observable<Object> {
     const appendedUrl = `${this.backendUrl}/${url}`;
+
     return this.http.post(appendedUrl, body);
   }
 }
