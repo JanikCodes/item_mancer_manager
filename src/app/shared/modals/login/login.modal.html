@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Login</h2>
+<mat-dialog-content>
+  <form [formGroup]="loginForm" class="form">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input formControlName="username" matInput placeholder="Tom" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        [type]="hidePassword() ? 'password' : 'text'"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="changePasswordVisibility($event)"
+      >
+        <mat-icon
+          >{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon
+        >
+      </button>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="login()">
+    Login
+  </button>
+</mat-dialog-actions>

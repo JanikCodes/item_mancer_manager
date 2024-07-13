@@ -21,5 +21,9 @@
 }
 
 .content {
-    @apply p-4;
+  @apply m-4;
+}
+
+.content-background {
+  background-color: #141616;
 }

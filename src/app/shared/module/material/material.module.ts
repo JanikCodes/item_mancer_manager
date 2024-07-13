@@ -6,7 +6,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +19,12 @@ import {
   MatListItemLine,
   MatNavList,
 } from '@angular/material/list';
-import { MatListItemSection } from '@angular/material/list/testing';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -42,6 +47,14 @@ import { MatListItemSection } from '@angular/material/list/testing';
     MatListItem,
     MatList,
     MatListItemLine,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
   ],
   exports: [
     MatSlideToggleModule,
@@ -49,7 +62,6 @@ import { MatListItemSection } from '@angular/material/list/testing';
     MatDivider,
     MatFabButton,
     MatIcon,
-    MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
     FormsModule,
@@ -63,6 +75,18 @@ import { MatListItemSection } from '@angular/material/list/testing';
     MatListItem,
     MatList,
     MatListItemLine,
+    MatDivider,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
   ],
 })
 export class MaterialModule {}
