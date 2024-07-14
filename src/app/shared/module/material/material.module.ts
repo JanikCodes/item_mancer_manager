@@ -25,6 +25,8 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -55,6 +57,9 @@ import {
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    MatPaginator,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatSlideToggleModule,
@@ -87,6 +92,9 @@ import {
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    MatPaginator,
+    MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}
