@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MaterialModule } from '../../module/material/material.module';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,9 +12,11 @@ import { LoginModal } from '../../modals/login/login.modal';
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss',
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent {
   public opened: boolean = false;
-  public user: any | null;
+
+  public user = input<any>();
+  public onMenuClicked = output<void>();
 
   readonly loginModal = inject(MatDialog);
 
@@ -22,12 +24,6 @@ export class TopBarComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {}
-
-  public ngOnInit(): void {
-    this.authService.user.subscribe((user) => {
-      this.user = user;
-    });
-  }
 
   public openLoginModal() {
     this.loginModal.open(LoginModal, {
