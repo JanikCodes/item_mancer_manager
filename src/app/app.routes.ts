@@ -8,4 +8,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/items/items.page').then((p) => p.ItemsPage),
   },
+  {
+    path: 'rarities',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./pages/rarities/rarities.page').then((p) => p.RaritiesPage),
+  },
 ];

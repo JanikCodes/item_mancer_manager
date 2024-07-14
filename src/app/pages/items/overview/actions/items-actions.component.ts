@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { MaterialModule } from '../../../shared/module/material/material.module';
+import { MaterialModule } from '../../../../shared/module/material/material.module';
 import { MatDialog } from '@angular/material/dialog';
-import { ItemsAddItemModal } from '../shared/modals/add-item/items-add-item.modal';
+import { ItemsAddItemModal } from '../../shared/modals/add-item/items-add-item.modal';
 
 @Component({
   selector: 'items-actions-component',
@@ -11,12 +11,12 @@ import { ItemsAddItemModal } from '../shared/modals/add-item/items-add-item.moda
   styleUrl: './items-actions.component.scss',
 })
 export class ItemsActionsComponent {
-  readonly loginModal = inject(MatDialog);
+  readonly itemModal = inject(MatDialog);
 
   public constructor() {}
 
   public addItemModal() {
-    this.loginModal.open(ItemsAddItemModal, {
+    this.itemModal.open(ItemsAddItemModal, {
       width: '500px',
     });
   }

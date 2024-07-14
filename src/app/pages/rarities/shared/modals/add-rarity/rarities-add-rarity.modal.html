@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Add Rarity</h2>
+<mat-dialog-content>
+  <mat-stepper orientation="vertical">
+    <form [formGroup]="addRarityForm" class="form">
+      <mat-step>
+        <ng-template matStepLabel>Step 1</ng-template>
+        <ng-template matStepContent>
+          <mat-form-field>
+            <mat-label>Rarity Name</mat-label>
+            <input formControlName="name" matInput />
+          </mat-form-field>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 2</ng-template>
+        <ng-template matStepContent>
+          <mat-form-field>
+            <mat-label>Rarity Color</mat-label>
+            <input type="color" formControlName="color" matInput />
+          </mat-form-field>
+        </ng-template>
+      </mat-step>
+    </form>
+  </mat-stepper>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [disabled]="!addRarityForm.valid"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

@@ -3,18 +3,18 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MaterialModule } from '../../../shared/module/material/material.module';
 import { HttpService } from '../../../shared/services/http/http.service';
-import { IItemTableElement } from '../items.types';
+import { IRarityTableElement } from '../rarities.types';
 
 @Component({
-  selector: 'items-overview-component',
+  selector: 'rarities-overview-component',
   standalone: true,
   imports: [MaterialModule],
-  templateUrl: './items-overview.component.html',
-  styleUrl: './items-overview.component.scss',
+  templateUrl: './rarities-overview.component.html',
+  styleUrl: './rarities-overview.component.scss',
 })
-export class ItemsOverviewComponent implements AfterViewInit {
-  public displayedColumns: string[] = ['id', 'name', 'description'];
-  public dataSource = new MatTableDataSource<IItemTableElement>();
+export class RaritiesOverviewComponent implements AfterViewInit {
+  public displayedColumns: string[] = ['id', 'name', 'color'];
+  public dataSource = new MatTableDataSource<IRarityTableElement>();
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -22,7 +22,7 @@ export class ItemsOverviewComponent implements AfterViewInit {
   public constructor(private httpService: HttpService) {}
 
   public ngAfterViewInit() {
-    this.httpService.get<IItemTableElement[]>('item-overview').subscribe({
+    this.httpService.get<IRarityTableElement[]>('rarity-overview').subscribe({
       next: (result) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;

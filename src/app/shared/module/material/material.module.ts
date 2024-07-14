@@ -32,6 +32,7 @@ import {
   MatStepper,
   MatStepperModule,
 } from '@angular/material/stepper';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
