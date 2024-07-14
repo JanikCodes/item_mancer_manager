@@ -27,6 +27,11 @@ import {
 } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import {
+  MatStep,
+  MatStepper,
+  MatStepperModule,
+} from '@angular/material/stepper';
 
 @NgModule({
   imports: [
@@ -60,6 +65,9 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginator,
     MatTableModule,
     MatPaginatorModule,
+    MatStepper,
+    MatStep,
+    MatStepperModule,
   ],
   exports: [
     MatSlideToggleModule,
@@ -95,6 +103,9 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginator,
     MatTableModule,
     MatPaginatorModule,
+    MatStepper,
+    MatStep,
+    MatStepperModule,
   ],
 })
 export class MaterialModule {}

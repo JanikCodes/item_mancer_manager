@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Add Item</h2>
+<mat-dialog-content>
+  <mat-stepper orientation="vertical">
+    <form [formGroup]="addItemForm" class="form">
+      <mat-step>
+        <ng-template matStepLabel>Step 1</ng-template>
+        <ng-template matStepContent>
+          <mat-form-field>
+            <mat-label>Item Name</mat-label>
+            <input formControlName="name" matInput placeholder="Sword" />
+          </mat-form-field>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 2</ng-template>
+        <ng-template matStepContent>
+          <mat-form-field>
+            <mat-label>Item Description</mat-label>
+            <input formControlName="description" matInput />
+          </mat-form-field>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 3</ng-template>
+        <ng-template matStepContent>
+          <mat-form-field>
+            <mat-label>Item Rarity</mat-label>
+            <input formControlName="rarity" matInput placeholder="Common" />
+          </mat-form-field>
+        </ng-template>
+      </mat-step>
+    </form>
+  </mat-stepper>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    [disabled]="!addItemForm.valid"
+  >
+    Save
+  </button>
+</mat-dialog-actions>
