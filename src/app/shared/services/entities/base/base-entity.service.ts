@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class BaseEntityService<T> {
   protected prefix: string = '';
 
-  constructor(private httpService: HttpService) {}
+  constructor(protected httpService: HttpService) {}
 
   public create(entity: Partial<T>): Observable<T> {
     return this.httpService.post<T>(this.prefix, entity);

@@ -5,6 +5,7 @@ import { MaterialModule } from '../../../shared/module/material/material.module'
 import { HttpService } from '../../../shared/services/http/http.service';
 import { IRarityTableElement } from '../rarities.types';
 import { RarityHelperService } from '../shared/services/rarity-helper/rarity-helper.service';
+import { RarityService } from '../../../shared/services/entities/rarity/rarity.service';
 
 @Component({
   selector: 'rarities-overview-component',
@@ -22,7 +23,8 @@ export class RaritiesOverviewComponent implements AfterViewInit, OnInit {
 
   public constructor(
     private httpService: HttpService,
-    private rarityHelperService: RarityHelperService
+    private rarityHelperService: RarityHelperService,
+    private rarityService: RarityService
   ) {}
 
   public ngOnInit(): void {
@@ -36,7 +38,7 @@ export class RaritiesOverviewComponent implements AfterViewInit, OnInit {
   }
 
   public updateOverview(): void {
-    this.httpService.get<IRarityTableElement[]>('rarity-overview').subscribe({
+    this.rarityService.getUserOverview().subscribe({
       next: (result) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
