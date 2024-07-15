@@ -8,6 +8,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Rarity } from '../../../../../shared/entities/rarity/rarity.entity';
+import { RarityService } from '../../../../../shared/services/entities/rarity/rarity.service';
+import { AuthService } from '../../../../../shared/services/auth/auth.service';
+import { User } from '../../../../../shared/entities/user/user.entity';
 
 @Component({
   selector: 'rarities-add-rarity-modal',
@@ -24,4 +28,25 @@ export class RaritiesAddRarityModal {
     name: new FormControl<string>('', Validators.required),
     color: new FormControl<string>('', Validators.required),
   });
+
+  public constructor(
+    private rarityService: RarityService,
+    private authService: AuthService
+  ) {}
+
+  public async save() {
+    const values = this.addRarityForm.value;
+    const user: User | null = this.authService.getUser();
+
+    const rarity: Partial<Rarity> = {
+      name: values.name!,
+      color: values.color!,
+    };
+
+    console.log(rarity);
+
+    this.rarityService.create(rarity).subscribe((createdRarity) => {
+      this.dialogRef.close();
+    });
+  }
 }

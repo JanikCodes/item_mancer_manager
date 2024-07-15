@@ -13,7 +13,7 @@ import { IRarityTableElement } from '../rarities.types';
   styleUrl: './rarities-overview.component.scss',
 })
 export class RaritiesOverviewComponent implements AfterViewInit {
-  public displayedColumns: string[] = ['id', 'name', 'color'];
+  public displayedColumns: string[] = ['name', 'color'];
   public dataSource = new MatTableDataSource<IRarityTableElement>();
 
   @ViewChild(MatPaginator)
@@ -28,7 +28,7 @@ export class RaritiesOverviewComponent implements AfterViewInit {
         this.dataSource.paginator = this.paginator;
       },
       error: (error) => {
-        console.error('Error fetching items:', error);
+        console.error('Error fetching rarities:', error);
       },
     });
   }

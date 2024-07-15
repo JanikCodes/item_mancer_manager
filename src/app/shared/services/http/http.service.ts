@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
+  HttpContext,
   HttpErrorResponse,
   HttpHeaders,
+  HttpParams,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -34,17 +36,24 @@ export class HttpService {
       withCredentials?: boolean;
     }
   ): Observable<T> {
-    const appendedUrl = `${this.backendUrl}/${url}`;
+    const appendedUrl = `${this.backendUrl}/${url}/`;
     return this.http
       .get<T>(appendedUrl, options)
       .pipe(catchError(this.handleError.bind(this)));
   }
 
-  public post(url: string, body: any | null): Observable<Object> {
-    const appendedUrl = `${this.backendUrl}/${url}`;
+  public post<T>(url: string, body: any | null): Observable<T> {
+    const appendedUrl = `${this.backendUrl}/${url}/`;
 
     return this.http
-      .post(appendedUrl, body)
+      .post<T>(appendedUrl, body)
+      .pipe(catchError(this.handleError.bind(this)));
+  }
+
+  public delete<T>(url: string): Observable<T> {
+    const appendedUrl = `${this.backendUrl}/${url}/`;
+    return this.http
+      .delete<T>(appendedUrl)
       .pipe(catchError(this.handleError.bind(this)));
   }
 

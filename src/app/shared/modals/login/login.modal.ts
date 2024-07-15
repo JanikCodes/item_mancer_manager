@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { SnackBarService } from '../../services/snack-bar/snack-bar.service';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
+import { User } from '../../entities/user/user.entity';
 
 @Component({
   selector: 'login-modal',
@@ -56,7 +57,13 @@ export class LoginModal {
     this.httpService.post('login', loginObj).subscribe(
       (result: any) => {
         if (result.token) {
-          this.authService.setUser(result);
+          const user: User = {
+            id: result.id,
+            username: result.username,
+          };
+
+          this.authService.setUser(user);
+          this.authService.setToken(result.token);
           this.snackBarService.showSnackBar('Success!', '', {
             duration: 3000,
             verticalPosition: 'bottom',
