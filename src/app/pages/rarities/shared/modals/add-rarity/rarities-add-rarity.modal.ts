@@ -10,8 +10,6 @@ import {
 } from '@angular/forms';
 import { Rarity } from '../../../../../shared/entities/rarity/rarity.entity';
 import { RarityService } from '../../../../../shared/services/entities/rarity/rarity.service';
-import { AuthService } from '../../../../../shared/services/auth/auth.service';
-import { User } from '../../../../../shared/entities/user/user.entity';
 import { RarityHelperService } from '../../services/rarity-helper/rarity-helper.service';
 
 @Component({
@@ -32,13 +30,11 @@ export class RaritiesAddRarityModal {
 
   public constructor(
     private rarityService: RarityService,
-    private authService: AuthService,
     private rarityHelperService: RarityHelperService
   ) {}
 
   public async save() {
     const values = this.addRarityForm.value;
-    const user: User | null = this.authService.getUser();
 
     const rarity: Partial<Rarity> = {
       name: values.name!,

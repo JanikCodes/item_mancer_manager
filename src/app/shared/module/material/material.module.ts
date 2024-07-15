@@ -34,6 +34,7 @@ import {
 } from '@angular/material/stepper';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -71,6 +72,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatStep,
     MatStepperModule,
     MatProgressSpinnerModule,
+    MatSelect,
+    MatOption,
   ],
   exports: [
     MatSlideToggleModule,
@@ -110,6 +113,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatStep,
     MatStepperModule,
     MatProgressSpinnerModule,
+    MatSelect,
+    MatOption,
   ],
 })
 export class MaterialModule {}

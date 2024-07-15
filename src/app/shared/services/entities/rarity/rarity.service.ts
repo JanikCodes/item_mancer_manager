@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseEntityService } from '../base/base-entity.service';
 import { Rarity } from '../../../entities/rarity/rarity.entity';
 import { HttpService } from '../../http/http.service';
-import { IRarityTableElement } from '../../../../pages/rarities/rarities.types';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class RarityService extends BaseEntityService<Rarity> {
     this.prefix = 'rarities';
   }
 
-  public getUserOverview() {
-    return this.httpService.get<IRarityTableElement[]>('rarity-overview');
+  public getUserOverview(): Observable<Rarity[]> {
+    return this.httpService.get<Rarity[]>('rarity-overview');
   }
 }

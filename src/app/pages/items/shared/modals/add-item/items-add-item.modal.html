@@ -25,7 +25,11 @@
         <ng-template matStepContent>
           <mat-form-field>
             <mat-label>Item Rarity</mat-label>
-            <input formControlName="rarity" matInput placeholder="Common" />
+            <mat-select formControlName="rarity">
+              @for (rarity of userRarities; track rarity) {
+              <mat-option [value]="rarity.id">{{rarity.name}}</mat-option>
+              }
+            </mat-select>
           </mat-form-field>
         </ng-template>
       </mat-step>
@@ -39,6 +43,7 @@
     mat-dialog-close
     cdkFocusInitial
     [disabled]="!addItemForm.valid"
+    (click)="save()"
   >
     Save
   </button>

@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MaterialModule } from '../../../shared/module/material/material.module';
 import { HttpService } from '../../../shared/services/http/http.service';
 import { IItemTableElement } from '../items.types';
+import { ItemHelperService } from '../shared/services/item-helper/item-helper.service';
 
 @Component({
   selector: 'items-overview-component',
@@ -12,7 +13,7 @@ import { IItemTableElement } from '../items.types';
   templateUrl: './items-overview.component.html',
   styleUrl: './items-overview.component.scss',
 })
-export class ItemsOverviewComponent implements AfterViewInit {
+export class ItemsOverviewComponent implements AfterViewInit, OnInit {
   public dataSource = new MatTableDataSource<IItemTableElement>();
   public loading: boolean = true;
   public displayedColumns: string[] = ['id', 'name', 'description'];
@@ -20,9 +21,22 @@ export class ItemsOverviewComponent implements AfterViewInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  public constructor(private httpService: HttpService) {}
+  public constructor(
+    private httpService: HttpService,
+    private itemHelperService: ItemHelperService
+  ) {}
+
+  public ngOnInit(): void {
+    this.itemHelperService.handleOverviewUpdate$.subscribe(() => {
+      this.updateOverview();
+    });
+  }
 
   public ngAfterViewInit() {
+    this.updateOverview();
+  }
+
+  private updateOverview(): void {
     this.httpService.get<IItemTableElement[]>('item-overview').subscribe({
       next: (result) => {
         this.dataSource = new MatTableDataSource(result);

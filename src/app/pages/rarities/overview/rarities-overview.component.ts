@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MaterialModule } from '../../../shared/module/material/material.module';
 import { HttpService } from '../../../shared/services/http/http.service';
-import { IRarityTableElement } from '../rarities.types';
 import { RarityHelperService } from '../shared/services/rarity-helper/rarity-helper.service';
 import { RarityService } from '../../../shared/services/entities/rarity/rarity.service';
+import { Rarity } from '../../../shared/entities/rarity/rarity.entity';
 
 @Component({
   selector: 'rarities-overview-component',
@@ -15,7 +15,7 @@ import { RarityService } from '../../../shared/services/entities/rarity/rarity.s
   styleUrl: './rarities-overview.component.scss',
 })
 export class RaritiesOverviewComponent implements AfterViewInit, OnInit {
-  public dataSource = new MatTableDataSource<IRarityTableElement>();
+  public dataSource = new MatTableDataSource<Rarity>();
   public loading: boolean = true;
   public displayedColumns: string[] = ['name', 'color'];
 
