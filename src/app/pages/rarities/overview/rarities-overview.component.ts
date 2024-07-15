@@ -15,8 +15,9 @@ import { RarityService } from '../../../shared/services/entities/rarity/rarity.s
   styleUrl: './rarities-overview.component.scss',
 })
 export class RaritiesOverviewComponent implements AfterViewInit, OnInit {
-  public displayedColumns: string[] = ['name', 'color'];
   public dataSource = new MatTableDataSource<IRarityTableElement>();
+  public loading: boolean = true;
+  public displayedColumns: string[] = ['name', 'color'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -42,6 +43,7 @@ export class RaritiesOverviewComponent implements AfterViewInit, OnInit {
       next: (result) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error fetching rarities:', error);

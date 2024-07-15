@@ -13,8 +13,9 @@ import { IItemTableElement } from '../items.types';
   styleUrl: './items-overview.component.scss',
 })
 export class ItemsOverviewComponent implements AfterViewInit {
-  public displayedColumns: string[] = ['id', 'name', 'description'];
   public dataSource = new MatTableDataSource<IItemTableElement>();
+  public loading: boolean = true;
+  public displayedColumns: string[] = ['id', 'name', 'description'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -26,6 +27,7 @@ export class ItemsOverviewComponent implements AfterViewInit {
       next: (result) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error fetching items:', error);
