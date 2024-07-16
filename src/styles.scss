@@ -1,9 +1,17 @@
-@use '@angular/material/prebuilt-themes/cyan-orange.css';
+@use "@angular/material/prebuilt-themes/cyan-orange.css";
 
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  background-color: #141616;
+  color: white;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

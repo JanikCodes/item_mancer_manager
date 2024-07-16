@@ -1,58 +1,21 @@
+<top-bar-component [user]="user"></top-bar-component>
+
 @if(user){
-<top-bar-component
-  [user]="user"
-  (onMenuClicked)="sidenav.toggle()"
-></top-bar-component>
-
-<mat-sidenav-container class="container-side">
-  <mat-sidenav
-    class="side-bar"
-    #sidenav
-    mode="side"
-    [disableClose]="true"
-    [opened]="true"
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" class="content-background">
+  @for (app of apps; track app) {
+  <a
+    mat-tab-link
+    (click)="navigateToSection(app.link)"
+    [active]="activeLink == app.link"
+    [disabled]="app.disabled"
   >
-    <mat-list>
-      <mat-list-item routerLink="items">
-        <span>Items</span>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item routerLink="rarities">
-        <span>Rarities</span>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item routerLink="attributes">
-        <span>Attributes</span>
-      </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content class="content-background">
-    <div class="content">
-      <router-outlet />
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-}@else {
-<top-bar-component
-  [user]="user"
-  (onMenuClicked)="sidenav.toggle()"
-></top-bar-component>
-
-<mat-sidenav-container class="container-side">
-  <mat-sidenav
-    class="side-bar"
-    #sidenav
-    mode="side"
-    [opened]="false"
-    [hidden]="true"
-  >
-  </mat-sidenav>
-
-  <mat-sidenav-content class="content-background">
-    <div class="content">
-      <router-outlet />
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    {{ app.title }}
+  </a>
+  }
+</nav>
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
 }
+
+<div class="content">
+  <router-outlet />
+</div>
